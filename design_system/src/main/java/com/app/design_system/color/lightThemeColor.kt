@@ -10,7 +10,7 @@ val lightThemeColor = WuslaColor(
         bottomSheet = Color(0xFFFFFFFF),
         progressBar = Color(0xFFE5E7EB),
         iconBackground = Color(0xFFDBEAFE),
-        postBackground = TODO(),
+        postBackground = Color(0xFFFFFFFF),
     ),
     shade = Shade(
         primary = Color(0xFF1F2937),
