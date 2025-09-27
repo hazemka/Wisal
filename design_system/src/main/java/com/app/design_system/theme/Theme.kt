@@ -12,6 +12,7 @@ object Theme {
     @Composable
     @ReadOnlyComposable
     get() = LocaleWusalColors.current
+
     val textStyle : WusalTextStyle
     @Composable
     @ReadOnlyComposable
