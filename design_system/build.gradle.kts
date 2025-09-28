@@ -47,4 +47,5 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.foundation.android)
+    debugImplementation(libs.ui.tooling)
 }

@@ -9,7 +9,7 @@ data class WuslaColor(
     val shade: Shade,
     val brand: Color,
     val button: Button,
-    val stroke: Color,
+    val stroke: Stroke,
     val additional: Additional
 )
 
@@ -37,6 +37,13 @@ data class Button(
 
 data class Additional(
     val iconColor: Color,
+    val white: Color
+)
+
+data class Stroke(
+    val normal: Color,
+    val error: Color,
+    val focused: Color
 )
 
 internal val LocaleWusalColors = staticCompositionLocalOf { darkThemeColor }
