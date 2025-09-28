@@ -23,8 +23,9 @@ val darkThemeColor = WuslaColor(
         primary = Color(0xFF6366F1),
         disabled = Color.Transparent,
     ),
-    stroke = Color(0xFFD1D5DB),
+    stroke = Stroke(Color(0xFFD1D5DB), Color(0xFFFF6B6B), Color(0xFF6366F1)),
     additional = Additional(
-        iconColor = Color(0xFF4B5563)
+        iconColor = Color(0xFF4B5563),
+        white = Color(0xFFFFFFFF)
     )
 )
