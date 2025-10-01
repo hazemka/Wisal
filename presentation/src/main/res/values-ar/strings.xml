@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wisal_logo">شعار وصال</string>
+    <string name="welcome_to_wisal">مرحباً بكم في وِصال</string>
+    <string name="an_app_to_connect_you_with_the_aid_you_deserve">تطبيق لتوصيلك بالمساعدة التي تستحقها.</string>
+    <string name="create_account">إنشاء حساب</string>
+    <string name="register_to_start">قم بالتسجيل للبدء</string>
+    <string name="full_name">الإسم الكامل</string>
+    <string name="enter_your_full_name">ادخل اسمك الكامل</string>
+    <string name="id_number">رقم الهوية</string>
+    <string name="enter_your_id_number">ادخل رقم الهوية الخاص بك</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="enter_your_phone_number">ادخل رقم هاتفك</string>
+    <string name="password">كلمة المرور</string>
+    <string name="enter_a_password">ادخل كلمة المرور</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="i_agree_to">أوافق على</string>
+    <string name="terms_and_privacy_policy">شروط الخدمة وسياسة الخصوصية</string>
+    <string name="do_you_already_have_an_account">هل لديك حساب بالفعل ؟</string>
+    <string name="login">تسجيل الدخول</string>
+</resources>

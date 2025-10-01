@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wisal_logo">wisal logo</string>
+    <string name="welcome_to_wisal">Welcome to Wisal</string>
+    <string name="an_app_to_connect_you_with_the_aid_you_deserve">An app to connect you with the aid you deserve.</string>
+    <string name="create_account">Create Account</string>
+    <string name="register_to_start">Register to start</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_your_full_name">Enter your full name</string>
+    <string name="id_number">ID Number</string>
+    <string name="enter_your_id_number">Enter your ID number</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="password">Password</string>
+    <string name="enter_a_password">Enter a password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="i_agree_to">I agree to</string>
+    <string name="terms_and_privacy_policy">Terms of Service and Privacy Policy</string>
+    <string name="do_you_already_have_an_account">Do you already have an account?</string>
+    <string name="login">Login</string>
+</resources>

@@ -30,6 +30,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -43,7 +44,7 @@ import com.app.design_system.theme.WuslaTheme
 @Composable
 fun WusalTextField(
     value: String,
-    leadingIcon: Int,
+    leadingIcon: Painter,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
     placeholder: String? = null,
@@ -117,7 +118,7 @@ fun WusalTextField(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Image(
-                            painter = painterResource(id = leadingIcon),
+                            painter = leadingIcon,
                             contentDescription = null,
                             colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(
                                 leadingIconTint
@@ -221,7 +222,7 @@ private fun PreviewBasicAppTextField() {
             value = text,
             onValueChange = { text = it },
             placeholder = "Enter your name",
-            leadingIcon = R.drawable.eye_ic,
+            leadingIcon = painterResource(R.drawable.eye_ic),
             leadingIconTint = Theme.colors.additional.iconColor
         )
     }
