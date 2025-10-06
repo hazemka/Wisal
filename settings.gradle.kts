@@ -23,3 +23,4 @@ rootProject.name = "Wusla"
 include(":app")
 include(":design_system")
 include(":presentation")
+include(":data")
