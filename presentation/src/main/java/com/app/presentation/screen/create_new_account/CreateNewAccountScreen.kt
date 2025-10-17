@@ -33,7 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.app.design_system.component.text_field.WusalButton
+import com.app.design_system.component.button.WusalButton
 import com.app.design_system.component.text_field.WusalTextField
 import com.app.design_system.theme.Theme
 import com.app.presentation.R
@@ -173,6 +173,7 @@ fun CreateNewAccountScreenContent(
                 modifier = Modifier
                     .padding(top = 16.dp),
                 value = state.password,
+                isPassword = true,
                 label = stringResource(R.string.password),
                 leadingIcon = painterResource(R.drawable.lock_ic),
                 leadingIconTint = Theme.colors.additional.iconColor,
@@ -192,6 +193,7 @@ fun CreateNewAccountScreenContent(
                 modifier = Modifier
                     .padding(top = 16.dp),
                 value = state.passwordConfirmation,
+                isPassword = true,
                 label = stringResource(R.string.confirm_password),
                 leadingIcon = painterResource(R.drawable.lock_ic),
                 leadingIconTint = Theme.colors.additional.iconColor,
