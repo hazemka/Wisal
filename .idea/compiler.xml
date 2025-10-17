@@ -3,6 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="Wusla.design_system.app.mylibrary" target="21" />
+      <module name="Wusla.domain" target="11" />
+      <module name="Wusla.domain.main" target="11" />
+      <module name="Wusla.domain.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

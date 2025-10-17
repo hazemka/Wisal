@@ -1,4 +1,4 @@
-package com.app.design_system.component.text_field
+package com.app.design_system.component.button
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
