@@ -1,9 +1,11 @@
 package com.app.presentation.screen.login
 
+import com.app.domain.usecase.auth.LoginUseCase
 import com.app.presentation.base.BaseViewModel
 
-class LoginViewModel(): BaseViewModel<LoginState, LoginEvents>(LoginState())
-, LoginInteractionListener{
+class LoginViewModel(
+    private val loginUseCase: LoginUseCase
+) : BaseViewModel<LoginState, LoginEvents>(LoginState()), LoginInteractionListener {
 
     override fun onIdNumberValueChanged(idNumber: String) {
         updateState { it.copy(idNumber = idNumber) }
