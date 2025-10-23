@@ -22,4 +22,14 @@
     <string name="login_to_your_account_or_create_a_new_account">سجّل الدخول إلى حسابك أو أنشئ حسابًا جديدًا</string>
     <string name="forget_password">نسيت كلمة المرور؟</string>
     <string name="don_t_have_an_account">ألا تملك حساباً؟</string>
+    <string name="only_numbers_are_allowed">مسموح بإدخال الأرقام فقط</string>
+    <string name="no_leading_or_trailing_spaces">يجب ألا يحتوي على مسافات في البداية أو النهاية</string>
+    <string name="fullname_must_be_only_letters">الاسم يجب ان يحتوي فقط على حروف</string>
+    <string name="enter_at_least_two_names">ادخل على الأقل اسمين</string>
+    <string name="you_must_enter_9_digits">يجب ادخال 9 ارقام</string>
+    <string name="you_must_enter_10_digits">يجب ادخال 10 ارقام</string>
+    <string name="password_must_be_10_25_characters">كلمة المرور يجب ان تتكون من 10-25 حرف</string>
+    <string name="password_must_include_letters_digits_and_special_chars">كلمة المرور يجب ان تحتوي على حروف وارقام ورموز</string>
+    <string name="password_does_not_match">كلمة المرور غير متطابقة</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>

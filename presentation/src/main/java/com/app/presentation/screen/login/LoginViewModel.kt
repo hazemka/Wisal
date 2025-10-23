@@ -1,6 +1,6 @@
 package com.app.presentation.screen.login
 
-import com.app.presentation.screen.base.BaseViewModel
+import com.app.presentation.base.BaseViewModel
 
 class LoginViewModel(): BaseViewModel<LoginState, LoginEvents>(LoginState())
 , LoginInteractionListener{

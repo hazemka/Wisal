@@ -1,4 +1,4 @@
-package com.app.wusla.app.di
+package com.app.presentation.di
 
 import com.app.presentation.screen.create_new_account.CreateNewAccountViewModel
 import com.app.presentation.screen.login.LoginViewModel

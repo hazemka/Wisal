@@ -1,4 +1,4 @@
-package com.app.presentation.screen.base
+package com.app.presentation.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -34,7 +34,7 @@ abstract class BaseViewModel<T, E>(
     protected fun <R> launchWithResult(
         action: suspend () -> R,
         onSuccess: (R) -> Unit,
-        onError: (Int) -> Unit,
+        onError: (String) -> Unit,
         onStart: () -> Unit = {},
         onFinally: () -> Unit = {}
     ) {
@@ -43,8 +43,7 @@ abstract class BaseViewModel<T, E>(
             runCatching { action() }
                 .onSuccess(onSuccess)
                 .onFailure { e ->
-                    val msg = (e as Exception).hashCode()
-                    onError(msg)
+                    onError(e.message ?: "Something went wrong.")
                 }
             onFinally()
         }
