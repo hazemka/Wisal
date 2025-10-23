@@ -1,13 +1,18 @@
 package com.app.presentation.screen.create_new_account
 
+import android.content.Context
+import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,14 +21,17 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,6 +41,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.app.design_system.component.button.WusalButton
 import com.app.design_system.component.text_field.WusalTextField
 import com.app.design_system.theme.Theme
@@ -44,9 +54,30 @@ fun CreateNewAccountScreen(
     viewModel: CreateNewAccountViewModel = koinViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
+    val context = LocalContext.current
+
+    LaunchedEffect(viewModel) {
+        viewModel.uiEffect.collect { event ->
+            when (event) {
+                is CreateNewAccountEvents.NavigateToLoginScreen -> {
+
+                }
+
+                is CreateNewAccountEvents.NavigateToRegistrationCompletionScreen -> {
+
+                }
+
+                is CreateNewAccountEvents.ShowError -> {
+                    Toast.makeText(context, event.message.asString(context), Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
     CreateNewAccountScreenContent(
         state = state,
-        interactionListener = viewModel
+        interactionListener = viewModel,
+        context = context
     )
 }
 
@@ -54,6 +85,7 @@ fun CreateNewAccountScreen(
 fun CreateNewAccountScreenContent(
     state: CreateNewAccountState,
     interactionListener: CreateNewAccountInteractionListener,
+    context: Context
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -129,7 +161,9 @@ fun CreateNewAccountScreenContent(
                 ),
                 keyboardActions = KeyboardActions(
                     onNext = { focusManager.moveFocus(FocusDirection.Down) }
-                )
+                ),
+                isError = state.fullNameError != null,
+                errorMessage = state.fullNameError?.asString(context = context)
             )
             WusalTextField(
                 modifier = Modifier
@@ -148,7 +182,9 @@ fun CreateNewAccountScreenContent(
                 ),
                 keyboardActions = KeyboardActions(
                     onNext = { focusManager.moveFocus(FocusDirection.Down) }
-                )
+                ),
+                isError = state.idNumberError != null,
+                errorMessage = state.idNumberError?.asString(context)
             )
             WusalTextField(
                 modifier = Modifier
@@ -167,7 +203,9 @@ fun CreateNewAccountScreenContent(
                 ),
                 keyboardActions = KeyboardActions(
                     onNext = { focusManager.moveFocus(FocusDirection.Down) }
-                )
+                ),
+                isError = state.phoneNumberError != null,
+                errorMessage = state.phoneNumberError?.asString(context)
             )
             WusalTextField(
                 modifier = Modifier
@@ -187,7 +225,9 @@ fun CreateNewAccountScreenContent(
                 ),
                 keyboardActions = KeyboardActions(
                     onNext = { focusManager.moveFocus(FocusDirection.Down) }
-                )
+                ),
+                isError = state.passwordError != null,
+                errorMessage = state.passwordError?.asString(context)
             )
             WusalTextField(
                 modifier = Modifier
@@ -207,7 +247,9 @@ fun CreateNewAccountScreenContent(
                 ),
                 keyboardActions = KeyboardActions(
                     onDone = { focusManager.clearFocus() }
-                )
+                ),
+                isError = state.passwordConfirmationError != null,
+                errorMessage = state.passwordConfirmationError?.asString(context)
             )
             Row(
                 modifier = Modifier
@@ -246,7 +288,11 @@ fun CreateNewAccountScreenContent(
                 buttonColor = Theme.colors.button.primary,
                 textColor = Theme.colors.additional.white,
                 textStyle = Theme.textStyle.medium.copy(fontSize = 18.sp),
-                onClick = interactionListener::onClickCreateAccount
+                onClick = interactionListener::onClickCreateAccount,
+                enableAction = (state.fullNameError == null && state.idNumberError == null && state.phoneNumberError == null
+                        && state.passwordError == null && state.passwordConfirmationError == null) &&
+                        state.fullName.isNotBlank() && state.idNumber.isNotBlank() && state.phoneNumber.isNotBlank() &&
+                        state.password.isNotBlank() && state.passwordConfirmation.isNotBlank() && state.agreeToTermsAndConditions
             )
             Row(
                 modifier = Modifier.padding(top = 32.dp),
@@ -267,6 +313,24 @@ fun CreateNewAccountScreenContent(
                             interactionListener::onClickGoToLogin
                         }
                 )
+            }
+            AnimatedVisibility(state.isLoading) {
+                Dialog(
+                    onDismissRequest = { },
+                    DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .size(100.dp)
+                            .background(
+                                Theme.colors.additional.white,
+                                shape = RoundedCornerShape(8.dp)
+                            )
+                    ) {
+                        CircularProgressIndicator(color = Theme.colors.button.primary)
+                    }
+                }
             }
         }
     }

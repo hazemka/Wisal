@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation(project(":design_system"))
+    implementation(project(":domain"))
     // koin
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)

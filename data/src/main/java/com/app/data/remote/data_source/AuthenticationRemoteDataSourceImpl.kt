@@ -1,0 +1,22 @@
+package com.app.data.remote.data_source
+
+import com.app.data.data_source.remote.AuthenticationRemoteDataSource
+import com.app.data.remote.dto.CreateNewAccountDto
+import com.app.data.remote.dto.CreateNewAccountRequestDto
+import com.app.data.remote.service.AuthenticationService
+import com.app.data.utlis.handleApi
+
+class AuthenticationRemoteDataSourceImpl(
+    private val authenticationService: AuthenticationService
+) : AuthenticationRemoteDataSource{
+
+    override suspend fun createNewAccount(createNewAccountRequestDto: CreateNewAccountRequestDto)
+    : CreateNewAccountDto = handleApi {
+        authenticationService.createNewAccount(createNewAccountRequestDto)
+    }
+
+
+    override suspend fun login(nationalId: String, password: String): Boolean {
+        TODO("Not yet implemented")
+    }
+}
