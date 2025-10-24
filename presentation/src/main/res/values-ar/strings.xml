@@ -31,5 +31,6 @@
     <string name="password_must_be_10_25_characters">كلمة المرور يجب ان تتكون من 10-25 حرف</string>
     <string name="password_must_include_letters_digits_and_special_chars">كلمة المرور يجب ان تحتوي على حروف وارقام ورموز</string>
     <string name="password_does_not_match">كلمة المرور غير متطابقة</string>
-    <string name="something_went_wrong">Something went wrong</string>
+    <string name="something_went_wrong">حدث خطأ ما</string>
+    <string name="incorrect_id_number_or_password">رقم الهوية او كلمة المرور غير صحيح</string>
 </resources>
