@@ -44,9 +44,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.app.presentation.navigation.WisalScreens
 
 @Composable
 fun LoginScreen(
+    navController: NavController,
     viewModel: LoginViewModel = koinViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -57,6 +61,10 @@ fun LoginScreen(
                 is LoginEvents.ShowError -> {
                     Toast.makeText(context, event.message.asString(context), Toast.LENGTH_LONG)
                         .show()
+                }
+
+                LoginEvents.NavigateToCreateNewAccountScreen -> {
+                    navController.navigate(route = WisalScreens.CreateNewAccountScreen.route)
                 }
             }
         }
@@ -183,7 +191,7 @@ fun LoginScreenContent(
                 modifier = Modifier
                     .padding(3.dp)
                     .clickable {
-                        interactionListener::onClickCreateNewAccount
+                        interactionListener.onClickCreateNewAccount()
                     }
             )
         }
@@ -211,5 +219,6 @@ fun LoginScreenContent(
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen()
+    val navController = rememberNavController()
+    LoginScreen(navController)
 }

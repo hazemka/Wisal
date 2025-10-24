@@ -181,7 +181,7 @@ class CreateNewAccountViewModel(
     override fun onClickTermsAndConditions() {}
 
     override fun onClickGoToLogin() {
-        TODO("Not yet implemented")
+        sendEvent(CreateNewAccountEvents.NavigateToLoginScreen)
     }
 
     private fun validateInput(

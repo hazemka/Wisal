@@ -43,15 +43,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.app.design_system.component.button.WusalButton
 import com.app.design_system.component.text_field.WusalTextField
 import com.app.design_system.theme.Theme
 import com.app.presentation.R
+import com.app.presentation.navigation.WisalScreens
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CreateNewAccountScreen(
-    viewModel: CreateNewAccountViewModel = koinViewModel()
+    navController: NavController,
+    viewModel: CreateNewAccountViewModel = koinViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
     val context = LocalContext.current
@@ -60,7 +64,7 @@ fun CreateNewAccountScreen(
         viewModel.uiEffect.collect { event ->
             when (event) {
                 is CreateNewAccountEvents.NavigateToLoginScreen -> {
-
+                    navController.popBackStack()
                 }
 
                 is CreateNewAccountEvents.NavigateToRegistrationCompletionScreen -> {
@@ -310,7 +314,7 @@ fun CreateNewAccountScreenContent(
                     modifier = Modifier
                         .padding(3.dp)
                         .clickable {
-                            interactionListener::onClickGoToLogin
+                            interactionListener.onClickGoToLogin()
                         }
                 )
             }
@@ -339,5 +343,6 @@ fun CreateNewAccountScreenContent(
 @Preview
 @Composable
 fun CreateNewAccountScreenPreview() {
-    CreateNewAccountScreen()
+    val navController = rememberNavController()
+    CreateNewAccountScreen(navController)
 }
