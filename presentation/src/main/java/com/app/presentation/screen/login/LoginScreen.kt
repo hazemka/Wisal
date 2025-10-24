@@ -1,19 +1,27 @@
 package com.app.presentation.screen.login
 
+import android.content.Context
+import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,20 +41,35 @@ import com.app.design_system.theme.Theme
 import com.app.presentation.R
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = koinViewModel()
-){
+) {
     val state by viewModel.uiState.collectAsState()
-    LoginScreenContent(state = state, interactionListener = viewModel)
+    val context = LocalContext.current
+    LaunchedEffect(viewModel) {
+        viewModel.uiEffect.collect { event ->
+            when (event) {
+                is LoginEvents.ShowError -> {
+                    Toast.makeText(context, event.message.asString(context), Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
+        }
+    }
+    LoginScreenContent(state = state, interactionListener = viewModel, context)
 }
 
 @Composable
 fun LoginScreenContent(
     state: LoginState,
-    interactionListener: LoginInteractionListener
-){
+    interactionListener: LoginInteractionListener,
+    context: Context
+) {
     val focusManager = LocalFocusManager.current
 
     Column(
@@ -87,7 +110,7 @@ fun LoginScreenContent(
             label = stringResource(R.string.id_number),
             leadingIcon = painterResource(R.drawable.id_ic),
             leadingIconTint = Theme.colors.additional.iconColor,
-            onValueChange = interactionListener::onIdNumberValueChanged ,
+            onValueChange = interactionListener::onIdNumberValueChanged,
             placeholder = stringResource(R.string.enter_your_id_number),
             maxLines = 1,
             keyboardOptions = KeyboardOptions(
@@ -97,7 +120,9 @@ fun LoginScreenContent(
             ),
             keyboardActions = KeyboardActions(
                 onNext = { focusManager.moveFocus(FocusDirection.Down) }
-            )
+            ),
+            isError = state.idNumberError != null,
+            errorMessage = state.idNumberError?.asString(context = context)
         )
         WusalTextField(
             modifier = Modifier
@@ -117,7 +142,9 @@ fun LoginScreenContent(
             ),
             keyboardActions = KeyboardActions(
                 onNext = { focusManager.clearFocus() }
-            )
+            ),
+            isError = state.passwordError != null,
+            errorMessage = state.passwordError?.asString(context)
         )
         Text(
             stringResource(R.string.forget_password),
@@ -126,7 +153,7 @@ fun LoginScreenContent(
             modifier = Modifier
                 .align(Alignment.End)
                 .padding(3.dp)
-                .clickable{
+                .clickable {
                     interactionListener::onClickForgetPassword
                 }
         )
@@ -136,7 +163,9 @@ fun LoginScreenContent(
             buttonColor = Theme.colors.button.primary,
             textColor = Theme.colors.additional.white,
             textStyle = Theme.textStyle.medium.copy(fontSize = 18.sp),
-            onClick = interactionListener::onClickLogin
+            onClick = interactionListener::onClickLogin,
+            enableAction = state.idNumberError == null && state.passwordError == null && state.idNumber.isNotBlank()
+                    && state.password.isNotBlank()
         )
         Row(
             modifier = Modifier.padding(top = 32.dp),
@@ -158,11 +187,29 @@ fun LoginScreenContent(
                     }
             )
         }
+        AnimatedVisibility(state.isLoading) {
+            Dialog(
+                onDismissRequest = { },
+                DialogProperties(dismissOnBackPress = false, dismissOnClickOutside = false)
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .size(100.dp)
+                        .background(
+                            Theme.colors.additional.white,
+                            shape = RoundedCornerShape(8.dp)
+                        )
+                ) {
+                    CircularProgressIndicator(color = Theme.colors.button.primary)
+                }
+            }
+        }
     }
 }
 
 @Preview
 @Composable
-fun LoginScreenPreview(){
+fun LoginScreenPreview() {
     LoginScreen()
 }

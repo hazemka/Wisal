@@ -25,7 +25,8 @@ class AuthenticationRepositoryImpl(
     }
 
     override suspend fun login(nationalId: String, password: String): Boolean {
-        return authenticationRemoteDataSource.login(nationalId,password)
+        val result = authenticationRemoteDataSource.login(nationalId,password)
+        return result.accessToken != null && result.refreshToken != null
     }
 
 }

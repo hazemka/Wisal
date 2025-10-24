@@ -1,5 +1,7 @@
 package com.app.presentation.screen.login
 
-sealed class LoginEvents {
+import com.app.presentation.utlis.StringValue
 
+sealed class LoginEvents {
+    data class ShowError(val message: StringValue) : LoginEvents()
 }
