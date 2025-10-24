@@ -90,7 +90,7 @@ class LoginViewModel(
     }
 
     override fun onClickCreateNewAccount() {
-        TODO("Not yet implemented")
+        sendEvent(LoginEvents.NavigateToCreateNewAccountScreen)
     }
 
     private fun validateInput(
