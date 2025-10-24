@@ -41,7 +41,6 @@ import com.app.design_system.theme.Theme
 import com.app.presentation.R
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
