@@ -66,6 +66,14 @@ fun LoginScreen(
                 LoginEvents.NavigateToCreateNewAccountScreen -> {
                     navController.navigate(route = WisalScreens.CreateNewAccountScreen.route)
                 }
+
+                LoginEvents.NavigateToHomeScreen -> {
+                    navController.navigate(route = WisalScreens.HomeScreen.route){
+                        popUpTo(WisalScreens.LoginScreen.route) {
+                            inclusive = true
+                        }
+                    }
+                }
             }
         }
     }

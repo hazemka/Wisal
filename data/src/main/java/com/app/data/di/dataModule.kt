@@ -55,7 +55,7 @@ val dataModule = module {
     single<AuthenticationRemoteDataSource> { AuthenticationRemoteDataSourceImpl(get()) }
 
     // Repositories:
-    single<AuthenticationRepository> { AuthenticationRepositoryImpl(get()) }
+    single<AuthenticationRepository> { AuthenticationRepositoryImpl(get(),get()) }
 
     single<PreferencesRepository> { PreferencesRepositoryImpl(androidContext()) }
 }
