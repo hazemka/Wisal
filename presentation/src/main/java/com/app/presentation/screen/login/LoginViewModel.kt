@@ -70,7 +70,7 @@ class LoginViewModel(
                 )
             }, onSuccess = {
                 updateState { it.copy(isLoading = false) }
-                // go to complete register
+                sendEvent(LoginEvents.NavigateToHomeScreen)
             },
             onError = {
                 updateState { it.copy(isLoading = false) }

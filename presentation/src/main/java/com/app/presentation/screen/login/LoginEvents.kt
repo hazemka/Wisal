@@ -5,4 +5,5 @@ import com.app.presentation.utlis.StringValue
 sealed class LoginEvents {
     data class ShowError(val message: StringValue) : LoginEvents()
     data object NavigateToCreateNewAccountScreen: LoginEvents()
+    data object NavigateToHomeScreen: LoginEvents()
 }
