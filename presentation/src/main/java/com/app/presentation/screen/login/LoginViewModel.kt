@@ -10,7 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
 ) : BaseViewModel<LoginState, LoginEvents>(LoginState()), LoginInteractionListener {
 
     private var idNumberValidationJob: Job? = null
@@ -70,7 +70,7 @@ class LoginViewModel(
                 )
             }, onSuccess = {
                 updateState { it.copy(isLoading = false) }
-                sendEvent(LoginEvents.NavigateToHomeScreen)
+                 sendEvent(LoginEvents.NavigateToHomeScreen)
             },
             onError = {
                 updateState { it.copy(isLoading = false) }

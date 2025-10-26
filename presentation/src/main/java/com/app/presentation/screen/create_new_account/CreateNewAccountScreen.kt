@@ -64,7 +64,10 @@ fun CreateNewAccountScreen(
         viewModel.uiEffect.collect { event ->
             when (event) {
                 is CreateNewAccountEvents.NavigateToLoginScreen -> {
-                    navController.popBackStack()
+                    if (navController.previousBackStackEntry != null){
+                        navController.popBackStack()
+                    }else
+                        navController.navigate(route = WisalScreens.LoginScreen.route)
                 }
 
                 is CreateNewAccountEvents.NavigateToRegistrationCompletionScreen -> {

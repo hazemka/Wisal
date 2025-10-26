@@ -2,11 +2,17 @@ package com.app.data.di
 
 import com.app.data.data_source.local.PreferencesRepositoryImpl
 import com.app.data.data_source.remote.AuthenticationRemoteDataSource
-import com.app.data.remote.data_source.AuthenticationRemoteDataSourceImpl
+import com.app.data.data_source.remote.BeneficiaryRemoteDataSource
+import com.app.data.remote.data_source_impl.AuthenticationRemoteDataSourceImpl
+import com.app.data.remote.data_source_impl.BeneficiaryRemoteDataSourceImpl
+import com.app.data.remote.interceptor.AuthInterceptor
 import com.app.data.remote.service.AuthenticationService
+import com.app.data.remote.service.BeneficiaryService
 import com.app.data.repository.AuthenticationRepositoryImpl
+import com.app.data.repository.BeneficiaryRepositoryImpl
 import com.app.data.utlis.BASE_URL
 import com.app.domain.repository.AuthenticationRepository
+import com.app.domain.repository.BeneficiaryRepository
 import com.app.domain.repository.PreferencesRepository
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -30,8 +36,11 @@ val dataModule = module {
         }
     }
 
+    single { AuthInterceptor(get()) }
+
     single {
         OkHttpClient.Builder()
+            .addInterceptor(get<AuthInterceptor>())
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
@@ -50,12 +59,15 @@ val dataModule = module {
 
     // Services:
     single<AuthenticationService> { get<Retrofit>().create(AuthenticationService::class.java) }
+    single<BeneficiaryService> { get<Retrofit>().create(BeneficiaryService::class.java) }
 
     // Data Sources:
     single<AuthenticationRemoteDataSource> { AuthenticationRemoteDataSourceImpl(get()) }
+    single<BeneficiaryRemoteDataSource> { BeneficiaryRemoteDataSourceImpl(get(),get()) }
 
     // Repositories:
     single<AuthenticationRepository> { AuthenticationRepositoryImpl(get(),get()) }
+    single<BeneficiaryRepository> { BeneficiaryRepositoryImpl(get()) }
 
     single<PreferencesRepository> { PreferencesRepositoryImpl(androidContext()) }
 }

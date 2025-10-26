@@ -6,5 +6,7 @@ interface PreferencesRepository {
     fun saveToken(accessToken: String, refreshToken: String)
     fun getAccessToken():String?
     fun getRefreshToken(): String?
+    fun saveUserId(userId: String?)
+    fun getUserId(): String?
     fun clearAllData()
 }
