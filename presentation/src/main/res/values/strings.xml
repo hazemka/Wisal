@@ -75,4 +75,20 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="family_member_num">Family Member Num %1$s:</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="read_more">Read more</string>
+    <string name="food_distribution_in_gaza">Food Distribution in Gaza</string>
+    <string name="wfp_distributed_emergency_food_parcels_to_over_1_000_families_in_gaza_this_month">WFP distributed emergency food parcels to over 1,000 families in Gaza this month.</string>
+    <string name="ensuring_food_security_for_vulnerable_families">Ensuring food security for vulnerable families.</string>
+    <string name="wfp">WFP</string>
+    <string name="school_supplies_for_children">School Supplies for Children</string>
+    <string name="unrwa_provided_essential_school_supplies_to_800_refugee_children_in_gaza">UNRWA provided essential school supplies to 800 refugee children in GAZA.</string>
+    <string name="supporting_education_for_refugee_children">Supporting education for refugee children.</string>
+    <string name="unrwa">UNRWA</string>
+    <string name="medical_aid_for_refugees">Medical Aid for Refugees</string>
+    <string name="anira_s_medical_team_provided_free_health_checkups_and_medications_for_more_than_500_refugees">Anira\'s medical team provided free health checkups and medications for more than 500 refugees.</string>
+    <string name="healthcare_access_for_all">Healthcare access for all.</string>
+    <string name="anera">Anera</string>
+    <string name="posts">Last Posts</string>
 </resources>
