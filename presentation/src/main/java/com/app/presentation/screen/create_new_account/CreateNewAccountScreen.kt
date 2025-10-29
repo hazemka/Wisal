@@ -64,11 +64,16 @@ fun CreateNewAccountScreen(
         viewModel.uiEffect.collect { event ->
             when (event) {
                 is CreateNewAccountEvents.NavigateToLoginScreen -> {
-                    navController.popBackStack()
+                    if (navController.previousBackStackEntry != null){
+                        navController.popBackStack()
+                    }else
+                        navController.navigate(route = WisalScreens.LoginScreen.route)
                 }
 
                 is CreateNewAccountEvents.NavigateToRegistrationCompletionScreen -> {
-
+                    navController.navigate(route = WisalScreens.BeneficiaryDetails.route){
+                        popUpTo(WisalScreens.CreateNewAccountScreen.route) { inclusive = true }
+                    }
                 }
 
                 is CreateNewAccountEvents.ShowError -> {
@@ -287,7 +292,8 @@ fun CreateNewAccountScreenContent(
                 }
             }
             WusalButton(
-                modifier = Modifier.padding(top = 16.dp),
+                modifier = Modifier.padding(top = 16.dp)
+                    .fillMaxWidth(),
                 buttonText = stringResource(R.string.create_account),
                 buttonColor = Theme.colors.button.primary,
                 textColor = Theme.colors.additional.white,

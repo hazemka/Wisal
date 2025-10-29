@@ -12,6 +12,7 @@ class PreferencesRepositoryImpl(context: Context) : PreferencesRepository {
         private const val KEY_ACCESS_TOKEN = "access_token"
         private const val KEY_REFRESH_TOKEN = "refresh_token"
         private const val KEY_LOGIN_SUCCESS = "login_success"
+        private const val KEY_USER_ID = "user_id"
     }
 
     override fun setLoginSuccess() {
@@ -34,6 +35,16 @@ class PreferencesRepositoryImpl(context: Context) : PreferencesRepository {
 
     override fun getRefreshToken(): String? {
         return sharedPrefs.getString(KEY_REFRESH_TOKEN, null)
+    }
+
+
+    override fun saveUserId(userId: String?) {
+        editor.putString(KEY_USER_ID, userId)
+            .apply()
+    }
+
+    override fun getUserId(): String? {
+        return sharedPrefs.getString(KEY_USER_ID,null)
     }
 
     override fun clearAllData() {

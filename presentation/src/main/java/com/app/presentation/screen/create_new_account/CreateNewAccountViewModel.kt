@@ -158,12 +158,12 @@ class CreateNewAccountViewModel(
             action = {
                 createNewAccountUseCase.invoke(
                     Beneficiary(
-                        uiState.value.fullName, uiState.value.idNumber, uiState.value.phoneNumber
+                        fullName = uiState.value.fullName, nationalId =  uiState.value.idNumber, phone =  uiState.value.phoneNumber
                     ), uiState.value.password
                 )
             }, onSuccess = {
                 updateState { it.copy(isLoading = false) }
-                // go to complete register
+                sendEvent(CreateNewAccountEvents.NavigateToRegistrationCompletionScreen)
             },
             onError = {
                 updateState { it.copy(isLoading = false) }
