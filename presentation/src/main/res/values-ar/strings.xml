@@ -75,4 +75,20 @@
     <string name="ok">تم</string>
     <string name="cancel">إلغاء</string>
     <string name="family_member_num">الفرد رقم %1$s:</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="read_more">عرض المزيد</string>
+    <string name="food_distribution_in_gaza">توزيع الطعام في غزة</string>
+    <string name="wfp_distributed_emergency_food_parcels_to_over_1_000_families_in_gaza_this_month">قام برنامج الأغذية العالمي بتوزيع طرود غذائية طارئة على أكثر من 1,000 أسرة في غزة هذا الشهر.</string>
+    <string name="ensuring_food_security_for_vulnerable_families">ضمان الأمن الغذائي للأسر الضعيفة.</string>
+    <string name="wfp">برنامج الغذاء العالمي</string>
+    <string name="school_supplies_for_children">اللوازم المدرسية للأطفال</string>
+    <string name="unrwa_provided_essential_school_supplies_to_800_refugee_children_in_gaza">قامت الأونروا بتوفير اللوازم المدرسية الأساسية لـ 800 طفل لاجئ في غزة.</string>
+    <string name="supporting_education_for_refugee_children">دعم التعليم للأطفال اللاجئين.</string>
+    <string name="unrwa">وكالة الغوث</string>
+    <string name="medical_aid_for_refugees">المساعدات الطبية للاجئين</string>
+    <string name="anira_s_medical_team_provided_free_health_checkups_and_medications_for_more_than_500_refugees">وقدم فريق أنيرا الطبي فحوصات طبية وأدوية مجانية لأكثر من 500 لاجئ.</string>
+    <string name="healthcare_access_for_all">الوصول إلى الرعاية الصحية للجميع.</string>
+    <string name="anera">أنيرا</string>
+    <string name="posts">احدث المنشورات</string>
 </resources>
