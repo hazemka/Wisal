@@ -163,7 +163,7 @@ class CreateNewAccountViewModel(
                 )
             }, onSuccess = {
                 updateState { it.copy(isLoading = false) }
-                // go to complete register
+                sendEvent(CreateNewAccountEvents.NavigateToRegistrationCompletionScreen)
             },
             onError = {
                 updateState { it.copy(isLoading = false) }

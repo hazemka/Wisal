@@ -3,6 +3,7 @@ package com.app.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
+import com.app.presentation.screen.beneficiary_details.beneficiaryDetailsRoute
 import com.app.presentation.screen.create_new_account.createNewAccountRoute
 import com.app.presentation.screen.home.homeRoute
 import com.app.presentation.screen.login.loginRoute
@@ -22,5 +23,6 @@ fun WisalNavGraph(
         createNewAccountRoute(navHostController)
         loginRoute(navHostController)
         homeRoute(navHostController)
+        beneficiaryDetailsRoute(navHostController)
     }
 }

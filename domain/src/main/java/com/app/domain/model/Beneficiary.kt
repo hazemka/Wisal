@@ -24,3 +24,7 @@ enum class HousingStatus {
     TENT, RENT, OWNED
 }
 
+enum class Relation{
+    SPOUSE, CHILD, PARENT
+}
+

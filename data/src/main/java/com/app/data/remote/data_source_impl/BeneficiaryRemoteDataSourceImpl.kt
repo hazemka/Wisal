@@ -1,9 +1,9 @@
 package com.app.data.remote.data_source_impl
 
-import android.util.Log
 import com.app.data.data_source.remote.BeneficiaryRemoteDataSource
 import com.app.data.remote.dto.BeneficiaryDetailsRequestDto
 import com.app.data.remote.dto.BeneficiaryDetailsResponseDto
+import com.app.data.remote.dto.FamilyMemberDto
 import com.app.data.remote.service.BeneficiaryService
 import com.app.domain.repository.PreferencesRepository
 
@@ -17,7 +17,6 @@ class BeneficiaryRemoteDataSourceImpl(
         if (response.isSuccessful) {
             preferencesRepository.saveUserId(response.body()?.id)
         }
-        Log.e("hzm", "get id response ${response.body()}")
         return response.body() ?: BeneficiaryDetailsResponseDto()
     }
 
@@ -25,12 +24,18 @@ class BeneficiaryRemoteDataSourceImpl(
         val id = preferencesRepository.getUserId()
         if (!id.isNullOrBlank()){
             val response = beneficiaryService.updateBeneficiaryDetails(id,beneficiaryDetailsRequestDto)
-            Log.e("hzm", "update response ${response.body()} ///// is success ${response.isSuccessful}")
             return response.isSuccessful
         }
         return false
     }
 
-
+    override suspend fun createNewFamilyMember(familyMemberDto: FamilyMemberDto): Boolean {
+        val id = preferencesRepository.getUserId()
+        if (!id.isNullOrBlank()){
+            val response = beneficiaryService.createNewFamilyMember(id,familyMemberDto)
+            return response.isSuccessful
+        }
+        return false
+    }
 }
 

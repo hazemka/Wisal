@@ -71,7 +71,9 @@ fun CreateNewAccountScreen(
                 }
 
                 is CreateNewAccountEvents.NavigateToRegistrationCompletionScreen -> {
-
+                    navController.navigate(route = WisalScreens.BeneficiaryDetails.route){
+                        popUpTo(WisalScreens.CreateNewAccountScreen.route) { inclusive = true }
+                    }
                 }
 
                 is CreateNewAccountEvents.ShowError -> {
@@ -290,7 +292,8 @@ fun CreateNewAccountScreenContent(
                 }
             }
             WusalButton(
-                modifier = Modifier.padding(top = 16.dp),
+                modifier = Modifier.padding(top = 16.dp)
+                    .fillMaxWidth(),
                 buttonText = stringResource(R.string.create_account),
                 buttonColor = Theme.colors.button.primary,
                 textColor = Theme.colors.additional.white,
